@@ -2,6 +2,10 @@
 
 Working through The Reasoned Schemer in Clojure.
 
+**Note:** This is not meant to be a copy, reproduction, or complete translation of the original book.
+Not all sections are included, if they didn't make sense to translate to executable examples.  The comments
+match the questions in a way that hopefully you'll be able to sync up with the book.
+
 ## Usage
 
 - Buy a copy of The Reasoned Schemer (http://amzn.com/0262562146).
