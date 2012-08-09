@@ -45,148 +45,144 @@
       succeed
       (== fail q))
 
-;; ... skipping the "does" questions
-
-;; What is the value of
+;; **22** - What is the value of
 (run* [x]
-      (let [x fail]
+      (let [x false]
         (== succeed x)))
 
-;; What value is associate with q in
+;; **23** - What value is associate with q in
 (run* [q]
       (fresh [x]
              (== succeed x)
              (== succeed q)))
 
-;; ... skip the next two
-
-;; What value is associated with q in
+;; **26** - What value is associated with q in
 (run* [q]
       (fresh [x]
-             (== x succeed)
-             (== succeed q)))
+             (== x true)
+             (== true q)))
 
-;; What value is associated with q in
+;; **27** - What value is associated with q in
 (run* [q]
       (fresh [x]
-             (== x succeed)
-             (== q succeed)))
+             (== x true)
+             (== q true)))
 
-;; What valid is associated with x in
+;; **28** - What valid is associated with x in
 (run* [x] succeed)
 
-;; What is the value of
+;; **29** - What is the value of
 (run* [x]
-      (let [x fail]
+      (let [x false]
         (fresh [x]
-               (== succeed x))))
+               (== true x))))
 
-;; What value is associated with r in
+;; **30** - What value is associated with r in
 (run* [r]
       (fresh [x y]
              (== (cons x (cons y '())) r )))
 
-;; What value is associated with s in
+;; **31** - What value is associated with s in
 (run* [s]
       (fresh [t u]
              (== (cons t (cons u '())) s)))
 
-;; What value is associated with r in
+;; **32** - What value is associated with r in
 (run* [r]
       (fresh [x]
              (let [y x]
                (fresh [x]
                       (== (cons y (cons x (cons y '()))) r)))))
 
-;; What value is associated with r in
+;; **33** - What value is associated with r in
 (run* [r]
       (fresh [x]
              (let [y x]
                (fresh [x]
                       (== (cons x (cons y (cons x '()))) r)))))
 
-;; What is the value of
+;; **34** - What is the value of
 (run* [q]
-      (== fail q)
-      (== succeed q))
+      (== false q)
+      (== true q))
 
-;; What is the value of
+;; **35** - What is the value of
 (run* [q]
-      (== fail q)
-      (== fail q))
+      (== false q)
+      (== false q))
 
-;; What value is associated with q in
+;; **36** - What value is associated with q in
 (run* [q]
       (let [x q]
-        (== succeed x)))
+        (== true x)))
 
-;; What value is associated with r in
+;; **37** - What value is associated with r in
 (run* [r]
       (fresh [x]
              (== x r)))
 
-;; What value is associated with q in
+;; **38** - What value is associated with q in
 (run* [q]
       (fresh [x]
-             (== succeed x)
+             (== true x)
              (== x q)))
 
-;; What value is associated with q in
+;; **39** - What value is associated with q in
 (run* [q]
       (fresh [x]
              (== x q)
-             (== succeed x)))
+             (== true x)))
 
-;; Are q and x different variables in
+;; **40** - Are q and x different variables in
 (run* [q]
       (fresh [x]
-             (== succeepd x)
+             (== true x)
              (== x q)))
 
-;; What is the value of
+;; **41** - What is the value of
 (cond
  false  true
  :else false)
 
-;; Does
+;; **43** - Does
 (cond
  false succeed
  :else fail)
 ;; succeed?
 
-;; Does
+;; **44** - Does
 (conde
  [fail succeed]
  [fail])
 ;; succeed?
 
-;; Does
+;; **45** - Does
 (conde
  [fail fail]
  [succeed])
 ;; succeed?
 
-;; Does
+;; **46** - Does
 (conde
  [succeed succeed]
  [fail])
 ;; succeed?
 
-;; What is the value of
+;; **47** - What is the value of
 (run* [x]
       (conde
        [(== 'olive x) succeed]
        [(== 'oil x) succeed]
        [fail]))
 
-;; What is the value of
+;; **49** - What is the value of
 (run 1 [x]
      (conde
       [(== 'olive x) succeed]
       [(== 'oil x) succeed]
       [fail]))
 
-;; What is the value of
+;; **50** - What is the value of
 (run* [x]
       (conde
        [(== 'virgin x) fail]
@@ -195,7 +191,7 @@
        [(== 'oil x) succeed]
        [fail]))
 
-;; What is the value of
+;; **52** - What is the value of
 (run 2 [x]
      (conde
       [(== 'extra x) succeed]
@@ -204,14 +200,14 @@
       [(== 'oil x) succeed]
       [fail]))
 
-;; What is associated with r in
+;; **53** - What is associated with r in
 (run* [r]
       (fresh [x y]
              (== 'split x)
              (== 'pea y)
              (== (cons x (cons y ())) r)))
 
-;; What is the value of
+;; **54** - What is the value of
 (run* [r]
       (fresh [x y]
              (conde
@@ -220,7 +216,7 @@
               [fail])
              (== (cons x (cons y ())) r)))
 
-;; What is the value of
+;; **55** - What is the value of
 (run* [r]
       (fresh [x y]
              (conde
@@ -229,7 +225,7 @@
               [fail])
              (== (cons x (cons y (cons 'soup ()))) r)))
 
-;; Consider this very simple definition
+;; **56** - Consider this very simple definition
 (defn teacupo [x]
   (conde
    [(== 'tea x) succeed]
@@ -240,7 +236,7 @@
 (run* [x]
       (teacupo x))
 
-;; Also, what is the value of
+;; **57** - Also, what is the value of
 (run* [r]
       (fresh [x y]
              (conde
@@ -249,28 +245,38 @@
               [fail])
              (== (cons x (cons y ())) r)))
 
-;; What is the value of
+;; **58** - What is the value of
 (run* [r]
       (fresh [x y z]
              (conde
               [(== y x)(fresh [x] (== z x))]
-              [(fresh [x] (== y x) (== z x))]
+              [(fresh [x] (== y x)) (== z x)]
               [fail])
              (== (cons y (cons z ())) r)))
-; TODO email this to DNolan to see if this is a bug
 
-;; Then, what is the value of
+;; **59** - Then, what is the value of
 (run* [r]
       (fresh [x y z]
              (conde
               [(== y x)(fresh [x] (== z x))]
-              [(fresh [x] (== y x) (== z x))]
+              [(fresh [x] (== y x)) (== z x)]
               [fail])
              (== false x)
              (== (cons y (cons z ())) r)))
 
-;; What is the value of
+;; **60** - What is the value of
 (run* [q]
       (let [a (== true q)
             b (== false q)]
+        b))
+
+;; **61** - What is the value of
+(run* [q]
+      (let [a (== true q)
+            b (fresh [x]
+                     (== x q)
+                     (== false x))
+            c (conde
+               [(== true q) succeed]
+               [(== false q)])]
         b))
